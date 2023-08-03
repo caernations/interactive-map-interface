@@ -2,9 +2,18 @@
    margin: 0;
    padding: 0;
    color: #F6F4EB;
-   font-family: sans-serif;
+   font-family: 'Poppins', sans-serif;
    letter-spacing: 1px;
    font-weight: 300;
+}
+
+.header{
+   min-height: 100vh;
+   width: 100%;
+   background-image: linear-gradient(rgba(4, 9, 30, 0.7), rgba(4, 9, 30, 0.7)), url(images/banner.png);
+   background-position: center;
+   background-size: cover;
+   position: relative;
 }
 
 body{
@@ -21,19 +30,74 @@ nav{
    z-index: 10;
 }
 
-h1{
-   padding-top: 5rem;
-   background-color: #F6F4EB;
+.text-box{
+   width: 90%;
+   color: #F6F4EB;
+   position: absolute;
+   top: 50%;
+   left: 50%;
+   transform: translate(-50%, -50%);
 }
 
-/*Styling logo*/
-.logo{
-   padding:1vh 1vw;
+.text-box h1{
+   font-size: 62px;
+   font-weight: 600;
    text-align: center;
 }
-.logo img {
-   height: 5rem;
-   width: 5rem;
+
+.text-box p{
+   margin: 10px 0 40px;
+   font-size: 14px;
+   color: #F6F4EB;
+   text-align: center;
+}
+
+.text-box {
+   margin: 10px 0 40px;
+   font-size: 14px;
+   color: #F6F4EB;
+   text-align: center;
+}
+
+ .labtek-btn,
+ .koica-btn {
+   display: inline-block;
+   text-decoration: none;
+   color: #F6F4EB;
+   border: 1.5px solid #F6F4EB;
+   padding: 12px 34px;
+   font-size: 13px;
+   background: transparent;
+   position: relative;
+   cursor: pointer;
+   margin: 10px;
+ }
+
+ .labtek-btn:hover, 
+ .koica-btn:hover{
+   border: 1px solid #749BC2;
+   background: #749BC2;
+   transition: 1s;
+ }
+
+
+h1{
+   color: #F6F4EB;
+}
+
+
+/* Navbar ntuk tampilan dalam mode fullscreen */
+@media screen and (min-width: 1024px) {
+   .nav-links {
+      justify-content: right;
+   }
+}
+
+/* Navbar untuk tampilan saat diminimize */
+@media screen and (max-width: 1023px) {
+   .nav-links {
+      justify-content: space-evenly;
+   }
 }
 
 /*Styling Links*/
@@ -45,27 +109,14 @@ h1{
    align-items: center;
    text-transform: uppercase;
  }
- 
- /* Untuk tampilan dalam mode fullscreen */
- @media screen and (min-width: 1024px) {
-   .nav-links {
-     justify-content: right;
-   }
- }
- 
- /* Untuk tampilan saat diminimize */
- @media screen and (max-width: 1023px) {
-   .nav-links {
-     justify-content: space-evenly;
-   }
- }
- 
+
 .nav-links li a{
    text-decoration: none;
    margin: 0 0.7vw;
 }
 .nav-links li a:hover {
    color: #91C8E4;
+   transition: 0.35s;
 }
 .nav-links li {
    position: relative;
@@ -73,6 +124,7 @@ h1{
 .nav-links li a:hover::before{
    width: 80%;
 }
+
 
 /*Styling Hamburger Icon*/
 .hamburger div{
