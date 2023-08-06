@@ -138,6 +138,10 @@ h1{
    display: none;
 }
 
+.logoatas{
+   margin-top: 15px;
+   margin-left: 15px;
+}
 /*Stying for small screens*/
 @media screen and (max-width: 800px){
    nav{
