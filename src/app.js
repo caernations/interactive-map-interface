@@ -1,6 +1,8 @@
 const hamburger = document.querySelector(".hamburger");
 const navLinks = document.querySelector(".nav-links");
 const links = document.querySelectorAll(".nav-links li");
+const searchInput = document.querySelector("#search-input");
+const searchFilter = document.querySelectorAll(".button-value")
 
 hamburger.addEventListener('click', ()=>{
     navLinks.classList.toggle("open");
@@ -11,7 +13,7 @@ hamburger.addEventListener('click', ()=>{
 });
 
 let rooms = {
-    data:[
+    labtekv : [
         {
             roomName: "FTI",
             category: "Ruang Umum",
@@ -119,11 +121,13 @@ let rooms = {
             image: "images/ruangpetugaskelas.jpg",
         },
 
+    ],
+    koica : [
+
     ]
 };
 
-for(let i of rooms.data) {
-
+function populateSearch(i) {
     let card = document.createElement("div");
     card.classList.add("card", "i.category");
 
@@ -138,11 +142,74 @@ for(let i of rooms.data) {
     let container = document.createElement("div");
     container.classList.add("container");
 
-    let name = document.createElement("h5")
+    let name = document.createElement("h3");
     name.classList.add("room-name");
-    name.innerText = i.roomName.toUpperCase();
-    imgContainer.appendChild(name)
+    name.innerText = i.roomName;
+    imgContainer.appendChild(name);
 
-    card.appendChild(container)
+    let description = document.createElement("h4");
+    description.classList.add("room-desc");
+    description.innerText = `Kategori: ${i.category}\nLokasi: ${i.location}\nDeskripsi: ${i.description}`;
+    imgContainer.appendChild(description);
+
+    card.appendChild(container);
     document.getElementById("rooms").appendChild(card);
 }
+
+function searchRoom(queryName) {
+    document.getElementById("rooms").innerHTML = "";
+    for(let i of rooms[building]) {
+        if (i.roomName.toLowerCase().indexOf(queryName.toLowerCase()) > -1) {
+            populateSearch(i);
+        }
+    }
+}
+
+searchInput.addEventListener("input", function(){
+    if (searchInput.value.length > 0) {
+        searchRoom(searchInput.value);
+        searchFilter.forEach(filterbtn => {
+            filterbtn.disabled = true;
+        });
+    } else {
+        searchFilter.forEach(filterbtn => {
+            filterbtn.disabled = false;
+        });
+        document.getElementById("rooms").innerHTML = "";
+    }
+});
+
+searchFilter.forEach(filterbtn => {
+    filterbtn.addEventListener("click", function(){
+        var filterCategory = filterbtn.dataset.filter;
+        if ([...filterbtn.classList].indexOf("active") > -1) {
+            searchFilter.forEach(activefilter => {
+                if ([...activefilter.classList].indexOf("active") > -1) {
+                    activefilter.classList.remove("active");
+                }
+            });
+            searchInput.disabled = false;
+            document.getElementById("rooms").innerHTML = "";
+        } else {
+            document.getElementById("rooms").innerHTML = "";
+            searchInput.disabled = true;
+            searchFilter.forEach(activefilter => {
+                if ([...activefilter.classList].indexOf("active") > -1) {
+                    activefilter.classList.remove("active");
+                }
+            });
+            filterbtn.classList.add("active");
+            if (filterbtn.dataset.filter == "All") {
+                for(let i of rooms[building]) {
+                    populateSearch(i);
+                }
+            } else {
+                for(let i of rooms[building]) {
+                    if (i.category == filterbtn.dataset.filter) {
+                        populateSearch(i);
+                    }
+                }
+            }
+        }
+    });
+});

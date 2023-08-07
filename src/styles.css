@@ -406,8 +406,17 @@ h1{
    text-align: center;
    width: 100%;
    height: 15em;
-   overflow: hidden; /* To hide any overflowing content */
+   overflow-x: hidden;
+   overflow-y: scroll;
    border-radius: 5px;
+}
+
+.image-container img {
+   width: 100%;
+}
+
+.room-name, .room-desc {
+   color: black;
 }
 
 .img{

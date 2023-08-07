@@ -33,12 +33,12 @@
                 <input type="search" id="search-input" placeholder="Find a Room"/>
                 <button id="search"><i class="fa-solid fa-magnifying-glass"></i>   search</button>
             </div>
-            <div id=""buttons">
-                <button class="button-value">All</button>
-                <button class="button-value">Classroom</button>
-                <button class="button-value">Toilet</button>
-                <button class="button-value">Lab</button>
-                <button class="button-value">Co-working Space</button>
+            <div id="buttons">
+                <button class="button-value" data-filter="All">All</button>
+                <button class="button-value" data-filter="Ruang Kelas">Classroom</button>
+                <button class="button-value" data-filter="Toilet">Toilet</button>
+                <button class="button-value" data-filter="Lab">Lab</button>
+                <button class="button-value" data-filter="Co-working Space">Co-working Space</button>
             </div>
             <div id="rooms"></div>
         </div>
@@ -60,7 +60,9 @@
                 </div>
                 <p>Made with <i class="fa-regular fa-heart"></i> by Kelompok 07</p>
     </section>
-
+    <script>
+        const building = "koica";
+    </script>
     <script src="app.js"></script>
 </body>
 </html>
