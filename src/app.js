@@ -2,7 +2,8 @@ const hamburger = document.querySelector(".hamburger");
 const navLinks = document.querySelector(".nav-links");
 const links = document.querySelectorAll(".nav-links li");
 const searchInput = document.querySelector("#search-input");
-const searchFilter = document.querySelectorAll(".button-value")
+const searchFilter = document.querySelectorAll(".button-value");
+var activeFilter = "";
 
 hamburger.addEventListener('click', ()=>{
     navLinks.classList.toggle("open");
@@ -128,55 +129,46 @@ let rooms = {
 };
 
 function populateSearch(i) {
-    let card = document.createElement("div");
-    card.classList.add("card", "i.category");
+    let cardcontainer = document.createElement("article");
+
+    let card = document.createElement("section");
+    card.classList.add("card");
+    cardcontainer.appendChild(card);
+
+    let container = document.createElement("div");
+    container.classList.add("text-content");
+
+    let name = document.createElement("h3");
+    name.innerText = i.roomName;
+    container.appendChild(name);
+
+    let description = document.createElement("p");
+    description.innerText = `Kategori: ${i.category}\nLokasi: ${i.location}\n\n${i.description}`;
+    container.appendChild(description);
+    card.appendChild(container);
 
     let imgContainer = document.createElement("div");
-    imgContainer.classList.add("image-container");
+    imgContainer.classList.add("visual");
 
     let image = document.createElement("img");
     image.setAttribute("src", i.image);
     imgContainer.appendChild(image);
     card.appendChild(imgContainer);
 
-    let container = document.createElement("div");
-    container.classList.add("container");
-
-    let name = document.createElement("h3");
-    name.classList.add("room-name");
-    name.innerText = i.roomName;
-    imgContainer.appendChild(name);
-
-    let description = document.createElement("h4");
-    description.classList.add("room-desc");
-    description.innerText = `Kategori: ${i.category}\nLokasi: ${i.location}\nDeskripsi: ${i.description}`;
-    imgContainer.appendChild(description);
-
-    card.appendChild(container);
-    document.getElementById("rooms").appendChild(card);
+    document.getElementById("rooms").appendChild(cardcontainer);
 }
 
-function searchRoom(queryName) {
+function searchRoom(queryName, categoryName="") {
     document.getElementById("rooms").innerHTML = "";
     for(let i of rooms[building]) {
-        if (i.roomName.toLowerCase().indexOf(queryName.toLowerCase()) > -1) {
+        if (i.roomName.toLowerCase().indexOf(queryName.toLowerCase()) > -1 && (categoryName == "" ? true : i.category == categoryName)) {
             populateSearch(i);
         }
     }
 }
 
 searchInput.addEventListener("input", function(){
-    if (searchInput.value.length > 0) {
-        searchRoom(searchInput.value);
-        searchFilter.forEach(filterbtn => {
-            filterbtn.disabled = true;
-        });
-    } else {
-        searchFilter.forEach(filterbtn => {
-            filterbtn.disabled = false;
-        });
-        document.getElementById("rooms").innerHTML = "";
-    }
+    searchRoom(searchInput.value, activeFilter);
 });
 
 searchFilter.forEach(filterbtn => {
@@ -188,28 +180,26 @@ searchFilter.forEach(filterbtn => {
                     activefilter.classList.remove("active");
                 }
             });
-            searchInput.disabled = false;
-            document.getElementById("rooms").innerHTML = "";
+            activeFilter = "";
+            searchRoom(searchInput.value, activeFilter)
         } else {
             document.getElementById("rooms").innerHTML = "";
-            searchInput.disabled = true;
             searchFilter.forEach(activefilter => {
                 if ([...activefilter.classList].indexOf("active") > -1) {
                     activefilter.classList.remove("active");
                 }
             });
             filterbtn.classList.add("active");
-            if (filterbtn.dataset.filter == "All") {
-                for(let i of rooms[building]) {
+            activeFilter = filterbtn.dataset.filter;
+            for(let i of rooms[building]) {
+                if (i.category == filterbtn.dataset.filter) {
                     populateSearch(i);
-                }
-            } else {
-                for(let i of rooms[building]) {
-                    if (i.category == filterbtn.dataset.filter) {
-                        populateSearch(i);
-                    }
                 }
             }
         }
     });
+});
+
+window.addEventListener("load", function(){
+    searchRoom(searchInput.value);
 });

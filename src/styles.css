@@ -1,3 +1,12 @@
+@import url(https://fonts.googleapis.com/css?family=Poppins:400,300,500);
+
+body {
+   background-image: linear-gradient(rgba(4, 9, 30, 0.7), rgba(4, 9, 30, 0.7)), url(images/banner.png);
+   background-repeat: no-repeat;
+   background-attachment: fixed;  
+   background-size: cover;
+}
+
 *{
    margin: 0;
    padding: 0;
@@ -13,7 +22,6 @@
 .header{
    min-height: 100vh;
    width: 100%;
-   background-image: linear-gradient(rgba(4, 9, 30, 0.7), rgba(4, 9, 30, 0.7)), url(images/banner.png);
    background-position: center;
    background-size: cover;
    position: relative;
@@ -384,48 +392,7 @@ h1{
 .active{
    background-color: #110f29;
    color: #F6F4EB;
-}
-
-#rooms{
-   display: grid;
-   grid-template-columns: auto auto auto;
-   grid-column-gap: 1.5em;
-   padding: 2em 0;
-}
-
-.card{
-   background-color: #fff;
-   max-width: 18em;
-   margin-top: 1em;
-   padding: 1em;
-   border-radius: 5px;
-   box-shadow: 1em 2em 2.5em rgba(1, 2, 68, 0.08);
-}
-
-.image-container{
-   text-align: center;
-   width: 100%;
-   height: 15em;
-   overflow-x: hidden;
-   overflow-y: scroll;
-   border-radius: 5px;
-}
-
-.image-container img {
-   width: 100%;
-}
-
-.room-name, .room-desc {
-   color: black;
-}
-
-.img{
-   width: fixed;
-   height: fixed;
-   max-width: 100%;
-   max-height: 100%;
-   object-fit: cover;
-}
+}  
 
 .footer{
    width: 100%;
@@ -454,3 +421,115 @@ h1{
    color: #749BC2;
 }
  
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
+}
+article {
+    color: #000;
+    box-sizing: border-box;
+    margin: 0;
+    font-size: 21px;
+}
+section.card {
+  background: #000046;
+  background: -webkit-linear-gradient(to right, #1CB5E0, #000046); 
+  background: linear-gradient(to right, #1CB5E0, #000046);
+  border-radius: 24px 24px 24px 48px;
+  padding: 48px 48px 0px 308px;
+  margin: 84px 84px;
+  min-width: 640px;
+  display: flex;
+  flex-direction: row;
+  align-self: flex-start;
+  position: relative;
+  box-shadow: 5px 0 0 0 rgba(204,204,204,0.3), -5px 0 0 0 rgba(204,204,204,0.3), 0 5px 0 0 rgba(204,204,204,0.3);
+}
+section.card .text-content {
+  display: flex;
+  flex-direction: column;
+  width:calc(60vw - 192px);
+}
+section.card .text-content h3 {
+  margin: 0;
+  font-size: 1.5em;
+  max-width: 20ch;
+  color: #fff;
+}
+section.card .text-content p {
+  margin: 25px 0 24px;
+  color: #fff;
+}
+section.card .text-content a {
+  border: 3px solid #f2f2f2;
+  color: #ffffff;
+  align-self: flex-start;
+  text-decoration: none;
+  padding: 16px 32px;
+  border-radius: 12px;
+  transition: 400ms all;
+}
+section.card .text-content a:hover {
+  background: #051c5e;
+  color: white;
+}
+section.card .visual {
+  width: 50%;
+  height: 50%;
+  position: absolute;
+  top: -24px;
+  left: 24px;
+  overflow: hidden;
+  border-radius: 24px;
+}
+section.card .visual img {
+  height: 100%;
+  border-radius: 24px;
+}
+article {
+  margin: auto;
+  display: block;
+  width:calc(60vw + 248px);
+  max-width:calc(920px + 248px);
+  min-width:calc(640px + 248px); 
+}
+@media all and (max-width: 1100px) {
+  article {
+    width: 100%;
+    min-width: 100%;
+  }
+  section.card {
+    min-width: 100%;
+  }
+  section.card .text-content {
+    width: 100%;
+  }
+}
+@media all and (max-width: 900px) {
+  section.card {
+    margin: 64px 0;
+    padding: 150px 36px 36px;
+    flex-direction: column;
+    border-radius: 24px;
+  }
+  section.card .text-content h3 {
+    max-width:calc(100% - 150px);
+    font-size: 1em;
+  }
+  section.card .text-content p,
+  section.card .text-content a {
+    font-size: 0.8em;
+  }
+  section.card .visual {
+    width: 300px;
+    height: 150px;
+    right: 16px;
+    left: auto;
+    border-radius: 24px;
+  }
+  section.card .visual img{
+    width: 100%;
+    height: auto;
+    }
+}
