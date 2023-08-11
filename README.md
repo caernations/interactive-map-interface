@@ -8,7 +8,7 @@ Kelompok 07 ; Milestone 02 SPARTA HMIF 2022
 - Kurangnya Panduan Interaktif
 
 # Usage
-Program ini merupakan website statik dengan halaman utama berada pada [src/index.html](https://github.com/caernations/interactive-map-interface/blob/main/src/index.html)
+Program ini merupakan website statik dengan halaman utama berada pada [src/index.html](https://github.com/caernations/interactive-map-interface/blob/main/src/index.html). Buka file [src/index.html](https://github.com/caernations/interactive-map-interface/blob/main/src/index.html) pada peramban situs web.
   
  # Pembagian Tugas
 | Tugas | Nama |
