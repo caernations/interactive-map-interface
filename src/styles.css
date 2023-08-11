@@ -437,7 +437,7 @@ section.card {
   background: -webkit-linear-gradient(to right, #1CB5E0, #000046); 
   background: linear-gradient(to right, #1CB5E0, #000046);
   border-radius: 24px 24px 24px 48px;
-  padding: 48px 48px 0px 308px;
+  padding: 48px 48px 0px 400px;
   margin: 84px 84px;
   min-width: 640px;
   display: flex;
